@@ -20,7 +20,7 @@ BCK_HAPROXY="${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-haproxy.tar.gz"
 bck_haproxy "$BCK_HAPROXY"
 
 BCK_LXD="${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-lxd.tar.gz"
-bck_lxd "$RUN_DIR" "$BCK_HAPROXY"
+bck_lxd "$RUN_DIR" "$BCK_LXD"
 
 bundle "${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-bck.tar.gz" $BCK_HAPROXY $BCK_LXD
 

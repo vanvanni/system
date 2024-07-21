@@ -67,7 +67,7 @@ function bundle() {
         write_red "Bundle::failed"
         exit 1
     else
-        write_gre "Bundle::created(${BUNDLE_TEMP})"
+        write_gre "Bundle::created(${BUNDLE_FILE})"
     fi
 }
 
