@@ -3,10 +3,11 @@
 
 source lib/script.sh
 load "use-env"
+load "use-smb"
 load "backup-haproxy"
 load "backup-lxd"
 
-env "SERVER_NAME"
+env "SERVER_NAME SMB_SHARE SMB_USERNAME SMB_PASSWORD"
 is_root
 
 RUN_ID=$(rid)
@@ -23,6 +24,7 @@ BCK_LXD="${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-lxd.tar.gz"
 bck_lxd "$RUN_DIR" "$BCK_LXD"
 
 bundle "${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-bck.tar.gz" $BCK_HAPROXY $BCK_LXD
+smb_upload "${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-bck.tar.gz" "${SERVER_NAME}"
 
-# rm -rf $RUN_DIR
+rm -rf $RUN_DIR
 write_gre "Script::done(${RUN_ID})"

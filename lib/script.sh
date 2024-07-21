@@ -18,22 +18,22 @@ function rid() {
 }
 
 function tz() {
-    local timestamp=$(date +$DATE_FORMAT)
+    local timestamp=$(/bin/date +$DATE_FORMAT)
     echo $timestamp
 }
 
 function write_gre() {
-    local time=$(date +'%H:%M:%S')
+    local time=$(/bin/date +'%H:%M:%S')
     echo -e "${COLOR_GREEN}[+] ${time} - $1${COLOR_RESET}"
 }
 
 function write_red() {
-    local time=$(date +'%H:%M:%S')
+    local time=$(/bin/date +'%H:%M:%S')
     echo -e "${COLOR_RED}[-] ${time} - $1${COLOR_RESET}"
 }
 
 function write_yel() {
-    local time=$(date +'%H:%M:%S')
+    local time=$(/bin/date +'%H:%M:%S')
     echo -e "${COLOR_YELLOW}[+] ${time} - $1${COLOR_RESET}"
 }
 

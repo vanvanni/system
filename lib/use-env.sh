@@ -16,9 +16,9 @@ function env() {
   done
 
   if [ ${#missing_vars[@]} -ne 0 ]; then
-    write_red "Environment::missing(${missing_vars[*]})"
+    write_red "Env::missing(${missing_vars[*]})"
     exit 1
   else
-    write_gre "Environment::loaded"
+    write_gre "Env::loaded"
   fi
 }
