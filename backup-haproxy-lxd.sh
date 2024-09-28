@@ -26,5 +26,5 @@ bck_lxd "$RUN_DIR" "$BCK_LXD"
 bundle "${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-bck.tar.gz" $BCK_HAPROXY $BCK_LXD
 smb_upload "${RUN_DIR}/${RUN_TIME}-${SERVER_NAME}-bck.tar.gz" "${SERVER_NAME}"
 
-rm -rf $RUN_DIR
+sudo rm -rf $RUN_DIR
 write_gre "Script::done(${RUN_ID})"

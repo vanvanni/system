@@ -29,9 +29,17 @@ function smb_upload() {
 }
 
 function smb_delete() {
-    echo "// TODO: Implement"
+    local PATH=$1
+    shift
+    local FILES=("$@")
+    for file in "${FILES[@]}"; do
+        $SMBC "$SMB_SHARE" -U "$SMB_USERNAME%$SMB_PASSWORD" -c "cd $PATH; rm \"$file\""
+         write_gre "Smb::deleted($file)"
+    done
 }
 
 function smb_ls() {
-    echo "// TODO: Implement"
+    local PATH=$1
+
+    $SMBC "$SMB_SHARE" -U "$SMB_USERNAME%$SMB_PASSWORD" -c "cd $PATH; ls" 
 }
