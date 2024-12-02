@@ -9,8 +9,11 @@ is_root
 
 sudo apt-get install restic -y
 
+# Create restic dir
+mkdir -p ~/.config/restic
+
 # Create and secure the password file
-echo $RESTIC_PASSWORD > ~/.config/restic/password.txt
+echo $RESTIC_PASSWORD >> ~/.config/restic/password.txt
 chmod 600 ~/.config/restic/password.txt
 write_gre "Restic::Password"
 
@@ -20,7 +23,7 @@ chmod 600 ~/.ssh/backup_key
 write_gre "Restic::Backupkey"
 
 # Create or edit ~/.ssh/config
-cat > ~/.ssh/config << EOF
+cat >> ~/.ssh/config << EOF
 Host restic-storage
     HostName $RESTIC_HOSTNAME
     User $RESTIC_USERNAME
@@ -33,7 +36,7 @@ chmod 600 ~/.ssh/config
 write_gre "Restic::SSHConfig"
 
 # Create restic environment file with specific SSH settings
-cat > ~/.config/restic/env << EOF
+cat >> ~/.config/restic/env << EOF
 export RESTIC_REPOSITORY="sftp:restic-storage:/home/$RESTIC_REPONAME"
 export RESTIC_PASSWORD_FILE="/root/.config/restic/password.txt"
 export RESTIC_REPOSITORY_PORT=$RESTIC_PORT
